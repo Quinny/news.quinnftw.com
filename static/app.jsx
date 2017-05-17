@@ -35,11 +35,11 @@ class RssFeed extends React.Component {
             <div className="card" style={extraStyle}>
               <div className="card-block">
                 <h4 className="card-title">
-                  <a href={post.link}>{post.title}</a>
+                  <a href={post.link} target="_">{post.title}</a>
                 </h4>
                 <h6 className="card-subtitle mb-2 text-muted">{post.source}</h6>
                 {post.comments &&
-                  <a href={post.comments} className="card-link">Comments</a>}
+                  <a href={post.comments} target="_" className="card-link">Comments</a>}
               </div>
             </div>
           </div>
