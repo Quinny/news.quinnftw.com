@@ -38,7 +38,7 @@ async def get_feed():
         now       = datetime.now()
         # Feed parser provides two extraneous fields in the date not needed
         # in the datetime constructor.
-        posted_on = datetime(*p["date"][:-2])
+        posted_on = datetime(*post["date"][:-2])
         return (now - posted_on).days <= 3
 
     # Parse the feed and return a list of relevant posts.
