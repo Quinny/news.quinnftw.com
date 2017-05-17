@@ -1,0 +1,4 @@
+https://news.ycombinator.com/rss
+http://quinnftw.com/feed.xml
+http://www.malwaretech.com/feed
+http://feeds.feedburner.com/TroyHunt?format=xml
