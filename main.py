@@ -13,12 +13,15 @@ app = Sanic(__name__)
 app.static("/static", "./static")
 app.static("/", "index.html")
 
+ADDITIONAL_HEADERS = {
+    "User-Agent": "news.quinnftw.com - Personal news aggregation service"
+}
+
 # Pull the RSS feed from each of the sources and parse it into the format
 # expected by the front-end.  Only posts within the past three days are kept
 # to prevent noise.
 @cached(ttl=ONE_HOUR, cache=RedisCache, key="rssfeed",
-        serializer=PickleSerializer(), port=6379, namespace="main",
-        endpoint="192.168.1.19")
+        serializer=PickleSerializer(), port=6379, namespace="main")
 async def get_feed():
     async def fetch_feed(url, session):
         async with session.get(url) as response:
@@ -43,7 +46,7 @@ async def get_feed():
 
     # Parse the feed and return a list of relevant posts.
     def parse_feed(feed):
-        source   = feedparser.parse(feed)
+        source = feedparser.parse(feed)
         return filter(
                 is_relevant,
                 [parse_entry(source, e) for e in source.entries]
@@ -51,15 +54,12 @@ async def get_feed():
 
     # Pull from each feed, extract the relevant posts, and sort them by
     # date (newest to oldest).
-    futures = []
-    async with ClientSession() as session:
-        for url in open("urls.txt").readlines():
-            futures.append(
-                asyncio.ensure_future(
-                    fetch_feed(url.strip(), session)
-                )
-            )
-        response_bodies = await asyncio.gather(*futures)
+    async with ClientSession(headers=ADDITIONAL_HEADERS) as session:
+        response_bodies = await asyncio.gather(*[
+            asyncio.ensure_future(
+                fetch_feed(url, session)
+            ) for url in open("urls.txt").read().splitlines()
+        ])
 
     flatten = lambda l: [item for sublist in l for item in sublist]
     posts   = flatten([parse_feed(f) for f in response_bodies])
