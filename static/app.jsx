@@ -89,7 +89,7 @@ class RssFeed extends React.Component {
                 <h4 className="card-title">
                   <a href={post.link} target="_">{post.title}</a>
                 </h4>
-                <h6 className="card-subtitle mb-2 text-muted">{post.source}</h6>
+                <h6 className="card-subtitle mb-2 text-muted">{post.source} ({index + 1}/{this.props.posts.length})</h6>
                 {post.comments &&
                   <a href={post.comments} target="_" className="card-link">Comments</a>}
               </div>
