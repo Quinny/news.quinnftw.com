@@ -3,3 +3,4 @@ http://quinnftw.com/feed.xml
 http://www.malwaretech.com/feed
 http://feeds.feedburner.com/TroyHunt?format=xml
 https://blog.acolyer.org/feed/
+http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
