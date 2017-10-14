@@ -54,7 +54,6 @@ async def get_feed():
 
     # Pull from each feed, extract the relevant posts, and sort them by
     # date (newest to oldest).
-    print("fetching...")
     async with ClientSession(headers=ADDITIONAL_HEADERS) as session:
         response_bodies = await asyncio.gather(*[
             asyncio.ensure_future(
