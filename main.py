@@ -13,20 +13,24 @@ app = Sanic(__name__)
 app.static("/static", "./static")
 app.static("/", "index.html")
 
+# Set the user agent to let target sites know who I am and hopefully not block
+# me.
 ADDITIONAL_HEADERS = {
     "User-Agent": "news.quinnftw.com - Personal news aggregation service"
 }
 
 # Pull the RSS feed from each of the sources and parse it into the format
 # expected by the front-end.  Only posts within the past three days are kept
-# to prevent noise.
+# to prevent noise. Results are cached for an hour in Redis.
 @cached(ttl=ONE_HOUR, cache=RedisCache, key="rssfeed",
         serializer=PickleSerializer(), port=6379, namespace="main")
 async def get_feed():
+    # Fetch the provided url and return the raw response body.
     async def fetch_feed(url, session):
         async with session.get(url) as response:
             return await response.read()
 
+    # Pull out needed information from an entry in an RSS feed.
     def parse_entry(source, entry):
         return {
             "title"   : entry.title,

@@ -36,7 +36,7 @@ String.prototype.hashCode = function() {
   return hash;
 };
 
-// Gnerate n random values with a seed.  The built in Javascript random does
+// Gnerate n random values with a seed.  The built-in Javascript random does
 // not support seeds.
 // http://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
 function seededRandomValues(seed, n) {
@@ -48,7 +48,7 @@ function seededRandomValues(seed, n) {
   return values;
 }
 
-// Generate a random color with the given seed.  The color is average with a
+// Generate a random color with the given seed.  The color is averaged with a
 // bias to prevent the generation of wacky colors.
 // http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
 function randomColor(seed) {
@@ -81,6 +81,7 @@ class RssFeed extends React.Component {
                           borderColor: colorString(color, "1")
                        };
 
+      // Render the posts.
       return (
         <div className="row" key={index}>
           <div className="col-md-8 offset-md-2 col-xs-12">
@@ -103,7 +104,7 @@ class RssFeed extends React.Component {
   }
 }
 
-// Fetch the feed from the API and render the feed.
+// Fetch the feed from the API and render it.
 $(document).ready(() => {
   $.get("/api/feed", posts => {
     ReactDOM.render(
