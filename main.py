@@ -42,6 +42,10 @@ async def get_feed():
 
     # Only posts from the last 3 days are deemed relevant.
     def is_relevant(post):
+        # Filter out posts which don't have a date. This is here because one
+        # time nytimes.com posted a junk RSS entry which crashed my app.
+        if post.get("date") is None:
+            return False
         now       = datetime.now()
         # Feed parser provides two extraneous fields in the date not needed
         # in the datetime constructor.
