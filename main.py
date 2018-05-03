@@ -1,5 +1,5 @@
 from aiohttp              import ClientSession
-from aiocache             import cached, RedisCache
+from aiocache             import cached, SimpleMemoryCache
 from aiocache.serializers import PickleSerializer
 from datetime             import datetime
 from sanic                import Sanic, response
@@ -21,9 +21,9 @@ ADDITIONAL_HEADERS = {
 
 # Pull the RSS feed from each of the sources and parse it into the format
 # expected by the front-end.  Only posts within the past three days are kept
-# to prevent noise. Results are cached for an hour in Redis.
-@cached(ttl=ONE_HOUR, cache=RedisCache, key="rssfeed",
-        serializer=PickleSerializer(), port=6379, namespace="main")
+# to prevent noise. Results are cached for an hour in RAM.
+@cached(ttl=ONE_HOUR, cache=SimpleMemoryCache, key="rssfeed",
+        serializer=PickleSerializer(), namespace="main")
 async def get_feed():
     # Fetch the provided url and return the raw response body.
     async def fetch_feed(url, session):
