@@ -9,18 +9,10 @@ const sourceCardStyles = {
     borderColor: "purple",
     backgroundColor: "rgba(128,0,128,0.1)"
   },
-  "Troy Hunt's Blog": {
-    borderColor: "green",
-    backgroundColor: "rgba(0,128,0,0.1)"
-  },
   "QuinnFTW.com": {
     borderColor: "blue",
     backgroundColor: "rgba(0,0,255,0.1)"
   },
-  "MalwareTech": {
-    borderColor: "cyan",
-    backgroundColor: "rgba(0,255,255,0.1)"
-  }
 };
 
 // String hash function, cherry picked from:

@@ -1,7 +1,6 @@
 https://news.ycombinator.com/rss
 http://quinnftw.com/feed.xml
-http://www.malwaretech.com/feed
-http://feeds.feedburner.com/TroyHunt?format=xml
 https://blog.acolyer.org/feed/
 http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
 https://www.mv-voice.com/news/rss.php?section=1
+https://logicmag.io/rss/
