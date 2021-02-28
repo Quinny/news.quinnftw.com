@@ -35,8 +35,8 @@ async def get_feed():
         return {
             "title"   : entry.title,
             "link"    : entry.link,
-            "date"    : entry.published_parsed,
-            "comments": entry.comments if "comments" in entry else None,
+            "date"    : entry.get('published_parsed', None),
+            "comments": entry.get('comments', None),
             "source"  : source.feed.title,
         }
 
