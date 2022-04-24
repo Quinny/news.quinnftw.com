@@ -2,6 +2,8 @@
 
 A personal news aggregator for my favourite websites.
 
+<img width="900" alt="news" src="https://user-images.githubusercontent.com/4185619/164989203-42a3173c-63c2-40d2-ae33-9855c0f8eb2a.png">
+
 # How does it work?
 
 The RSS feeds from the `urls.txt` file are fetched, trimmed to posts from the
