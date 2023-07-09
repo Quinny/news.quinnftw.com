@@ -11,7 +11,7 @@ ONE_HOUR = 60 * 60
 
 app = Sanic(__name__)
 app.static("/static", "./static")
-app.static("/", "index.html")
+app.static("/", "index.html", name='index')
 
 # Set the user agent to let target sites know who I am and hopefully not block
 # me.
